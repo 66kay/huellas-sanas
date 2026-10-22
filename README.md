@@ -1,5 +1,10 @@
 # Huellas Sanas
 
+
+
+
+CONTRASEÑA Y USUARIO: admin admin
+
 Sistema de citas para una clínica veterinaria hecho con Django. Permite ver las citas de un día y registrar un paciente nuevo junto con su cita.
 
 ## Cómo ejecutarlo
