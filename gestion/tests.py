@@ -104,5 +104,5 @@ class VistasTests(TestCase):
 class GenerarDatosTests(TestCase):
     def test_crea_20_mascotas_y_citas(self):
         call_command("Generar_Datos")
-        self.assertEqual(Mascota.objects.filter(nombre_dueno__startswith="[DEMO]").count(), 20)
+        self.assertEqual(Mascota.objects.count(), 20)
         self.assertEqual(Cita.objects.count(), 20)

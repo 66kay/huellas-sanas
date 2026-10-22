@@ -21,8 +21,8 @@ Si no se definen, se usan valores solo para desarrollo.
 
 ## Datos de prueba
 
-`python manage.py Generar_Datos` crea 20 mascotas (dueños con prefijo `[DEMO]`) y 20 citas entre hoy y 3 días después.
-Con `--borrar` pide escribir "si" y elimina solo las mascotas `[DEMO]` (y sus citas) antes de crear las nuevas.
+`python manage.py Generar_Datos` crea 20 mascotas y 20 citas entre hoy y 3 días después.
+Con `--borrar` pide escribir "si" y elimina solo las mascotas de prueba que genera el comando (por nombre y dueño) antes de crear las nuevas.
 
 ## Pruebas
 

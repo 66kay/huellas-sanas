@@ -18,18 +18,19 @@ HORAS = ["09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "15:00", "15:30"]
 
 
 class Command(BaseCommand):
-    help = "Crea 20 mascotas y 20 citas de prueba (dueños con prefijo [DEMO])"
+    help = "Crea 20 mascotas y 20 citas de prueba"
 
     def add_arguments(self, parser):
         parser.add_argument("--borrar", action="store_true",
-                            help="borra antes las mascotas [DEMO]")
+                            help="borra antes las mascotas de prueba que genera este comando")
 
     def handle(self, *args, **options):
         if options["borrar"]:
-            if input('Escribe "si" para borrar los datos [DEMO]: ') != "si":
+            if input('Escribe "si" para borrar los datos de prueba: ') != "si":
                 self.stdout.write("Cancelado.")
                 return
-            Mascota.objects.filter(nombre_dueno__startswith="[DEMO]").delete()
+            # solo borra mascotas con nombre y dueño exactos de las listas de este comando
+            Mascota.objects.filter(nombre__in=NOMBRES, nombre_dueno__in=DUENOS).delete()
 
         random.seed(42)
         hoy = timezone.localdate()
@@ -55,7 +56,7 @@ class Command(BaseCommand):
                 nombre=NOMBRES[creadas],
                 especie=especie,
                 raza=raza,
-                nombre_dueno="[DEMO] " + random.choice(DUENOS),
+                nombre_dueno=random.choice(DUENOS),
             )
             Cita.objects.create(
                 mascota=mascota,
