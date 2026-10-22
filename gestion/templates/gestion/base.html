@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block titulo %}Huellas Sanas{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'gestion/estilos.css' %}">
+</head>
+<body>
+    <header class="barra">
+        <span class="logo">Huellas Sanas</span>
+        <nav>
+            {% if user.is_authenticated %}
+                <a href="{% url 'lista_citas' %}">Citas</a>
+                <a href="{% url 'registrar' %}">Nuevo paciente</a>
+                <form method="post" action="{% url 'logout' %}" class="salir">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{% url 'login' %}">
+                    <button type="submit" class="enlace">Salir</button>
+                </form>
+            {% endif %}
+        </nav>
+    </header>
+    <main class="contenido">
+        {% for m in messages %}
+            <p class="mensaje {{ m.tags }}">{{ m }}</p>
+        {% endfor %}
+        {% block contenido %}{% endblock %}
+    </main>
+</body>
+</html>

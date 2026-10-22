@@ -1,0 +1,34 @@
+{% extends "gestion/base.html" %}
+{% block titulo %}Nuevo paciente - Huellas Sanas{% endblock %}
+{% block contenido %}
+<h1>Nuevo paciente y cita</h1>
+
+<form method="post" class="formulario">
+    {% csrf_token %}
+    {{ form_c.non_field_errors }}
+
+    <fieldset>
+        <legend>Mascota</legend>
+        {% for campo in form_m %}
+            <div class="campo">
+                {{ campo.label_tag }}
+                {{ campo }}
+                {{ campo.errors }}
+            </div>
+        {% endfor %}
+    </fieldset>
+
+    <fieldset>
+        <legend>Cita</legend>
+        {% for campo in form_c %}
+            <div class="campo{% if campo.name == 'motivo_consulta' %} ancho{% endif %}">
+                {{ campo.label_tag }}
+                {{ campo }}
+                {{ campo.errors }}
+            </div>
+        {% endfor %}
+    </fieldset>
+
+    <button type="submit">Guardar</button>
+</form>
+{% endblock %}
